@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="i1U0jcUKFHgSp898QlsvNk">
+<head data-page-node-id="xTO9gUv7rWVo5Tp8QbQLVK">
+<meta charset="UTF-8" data-page-node-id="v8y2nTCAQ8wEPeG2JnROUr">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" data-page-node-id="Smz3hU14i8wHadzEHbOHie">
+<meta name="format-detection" content="telephone=no,email=no,address=no" data-page-node-id="YRSFaQuQ1m1APl8qCrNYFG">
+<meta name="theme-color" content="#f7f0e6" data-page-node-id="ElObK0JoA9taWCOYQwyYEY">
+<meta name="description" content="重庆六大文化地标立体数字地图 · 原创舞蹈影像 · 文化科普 · 趣味问答" data-page-node-id="iFMCEzOC00vZwl8La7ZTGi">
+<title>重庆六大文化地标 · 数字舞蹈地图</title>
+
+<!-- Leaflet 地图引擎（已下载到本地 vendor/，比赛现场无外网也能跑） -->
+<link rel="stylesheet" href="vendor/leaflet/leaflet.min.css" data-page-node-id="S91LbRbZX0MLBFq6SuSZH5">
+<script defer src="vendor/leaflet/leaflet.min.js"></script>
+
+<link rel="stylesheet" href="css/style.css" data-page-node-id="gGJPAGZwtmaspmFik9LEKW">
+</head>
+<body data-page-node-id="BxajkZLh9BnYpLaRfCzIhE">
+
+<div id="app" data-page-node-id="5mLmkZNeLGMt1XquKh0Eo7">
+
+  <!-- ========================================================
+       首页：文创手绘虚拟地图
+       ======================================================== -->
+  <section class="stage is-on" id="homeStage" data-page-node-id="8FjxB7zo3KqglG93dJUep4">
+    <header class="home-header" data-page-node-id="iej5cG01ubak5uTuqyI11I">
+      <span class="home-badge" data-page-node-id="fP9uGhN6zMeH1g8EgIvsRC">DIGITAL&nbsp;DANCE&nbsp;MAP</span>
+      <h1 class="home-title" data-page-node-id="Cw2Co0zz638YUv1V0BVwUD">山城数字地图</h1>
+      <p class="home-sub" data-page-node-id="nsMJbIDO35anFqHqJAUWDt">六大文化地标 · 一图阅尽立体重庆</p>
+    </header>
+
+    <!-- 文创印章装饰：右上角红印，增强整体感 -->
+    <div class="home-seal" aria-hidden="true" data-page-node-id="h0SealEleDeco">
+      山城<br><span>印象</span>
+    </div>
+
+    <!-- 立体数字地图：可双指缩放 / 拖拽平移 -->
+    <div class="home-map-wrap" id="homeMapWrap" data-page-node-id="l98PxVvNx08brYDM5TAPt5">
+      <div class="home-canvas" id="homeCanvas" data-page-node-id="c1HomeCanvasLayer">
+        <img class="hm-bg" id="homeBg" src="assets/img/home-map-bg.jpg" alt="重庆立体地貌数字地图" data-page-node-id="i2HomeBgImg">
+        <div class="home-markers" id="homeMap" data-page-node-id="eGNfuGbcHYQlEMeMNgVQxd"></div>
+      </div>
+
+      <!-- 缩放控件 -->
+      <div class="map-zoom" id="homeZoom" data-page-node-id="c3HomeZoomCtrl">
+        <button id="hzIn"    type="button" aria-label="放大" data-page-node-id="b1HzIn">＋</button>
+        <button id="hzOut"   type="button" aria-label="缩小" data-page-node-id="b2HzOut">－</button>
+        <button id="hzReset" type="button" aria-label="复位" data-page-node-id="b3HzReset">⟲</button>
+      </div>
+
+      <div class="map-hint" id="mapHint" data-page-node-id="c4HomeGestureHint">双指缩放 · 拖拽平移 · 点击地标</div>
+    </div>
+
+    <nav class="home-nav" id="bottomNav" data-page-node-id="cpQdZZIOUOP1imGtgtKavo">
+      <button class="hn-item" data-act="intro" type="button" data-page-node-id="yURRTtT5qIrB45GJ3HVdWR">
+        <span class="hn-ico" data-page-node-id="DnFj0Wv4sTugvFfQiJ8tsZ">📜</span>
+        <span class="hn-txt" data-page-node-id="SwhnIFxon9J39MGSn1Ykcr">项目简介</span>
+      </button>
+      <button class="hn-item" data-act="quiz" type="button" data-page-node-id="Or9GVLTo2LhvaCFdVlkila">
+        <span class="hn-ico" data-page-node-id="BkzoCic0GJXLvxSdkAuDQQ">❓</span>
+        <span class="hn-txt" data-page-node-id="d0GpDDUUGBRjMWSFoMSkJs">知识问答</span>
+      </button>
+      <button class="hn-item" data-act="concept" type="button" data-page-node-id="ie64XSr1AxwsiChNUQ6cNu">
+        <span class="hn-ico" data-page-node-id="DoBOdziAYQIjebm1paLlsl">✨</span>
+        <span class="hn-txt" data-page-node-id="t9d6P3OOTV4OEhsV5QfsYF">创作说明</span>
+      </button>
+      <button class="hn-item hn-enter" data-act="nav" type="button" data-page-node-id="ypvvHN2jHvvSdh5qexrQV4">
+        <span class="hn-ico" data-page-node-id="Tec0ewnuKtInW1AHZlAEDG">🧭</span>
+        <span class="hn-txt" data-page-node-id="QdgSYuQnbPchESet8YGoBS">进入导航</span>
+      </button>
+    </nav>
+  </section>
+
+  <!-- ========================================================
+       导航页：真实地图 + 缩放 + 卫星
+       ======================================================== -->
+  <section class="stage" id="navStage" data-page-node-id="SH1VMo0cFd2BgGcalIDX1q">
+    <div id="mapViewport" data-page-node-id="5nxwbdtvL4kNM4GHWcTVsg">
+      <div id="realMap" data-page-node-id="00l8qfPFfPTkWjHE8otdKs"></div>
+
+      <button class="nav-back" id="btnBackHome" type="button" data-page-node-id="QmtWUSJ4sZoHGxs9bol1GA">返回</button>
+
+      <header class="topbar" data-page-node-id="QEkmTLZYa0H4LGU7hGFN8H">
+        <div class="topbar-main" data-page-node-id="8dVcIfoJjndYUKNDpuGwN1">
+          <span class="topbar-badge" data-page-node-id="f60neistbfB9M9ym5Oi23Z">REAL&nbsp;MAP</span>
+          <h1 class="topbar-title" data-page-node-id="efF2UedexPSuuj1fwAMTN8">真实地图导航</h1>
+          <p class="topbar-sub" data-page-node-id="KA5C1idT4EX15ubAe11cDk">双指缩放 · 拖动平移 · 点击地标</p>
+        </div>
+      </header>
+
+      <div class="zoom-ctrl" data-page-node-id="yalG3kv1DTnZMAHhvgoUZJ">
+        <button id="btnZoomIn"  type="button" aria-label="放大" data-page-node-id="7CJgZjE5vaqbU07Au8ya1L">＋</button>
+        <button id="btnZoomOut" type="button" aria-label="缩小" data-page-node-id="MpANNcATLDjnkJxJzZkZfH">－</button>
+        <button id="btnReset"   type="button" aria-label="复位" data-page-node-id="oNZqpdWghBx4ANqaUlU0F4">⟲</button>
+        <button id="btnLocate"  type="button" aria-label="定位" data-page-node-id="nsf0y70LqRweez6yoErMXj">◎</button>
+      </div>
+
+      <div class="layer-ctrl" id="layerCtrl" data-page-node-id="v1jHIkAom6mLcr4vn5Whqj">
+        <button class="layer-btn is-on" data-layer="vec" type="button" data-page-node-id="37HHrWOMG9aXW1JeIr290d">导航</button>
+        <button class="layer-btn"        data-layer="sat" type="button" data-page-node-id="R8xhhxg6BRrJ6icgkhMlCE">卫星</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 地标信息卡片 ============ -->
+  <div class="lm-modal" id="lmPanel" role="dialog" aria-modal="true" data-page-node-id="wfV4V3dKTGxRqvGfIgASlH"></div>
+
+  <!-- ============ 底部通用内容弹层 ============ -->
+  <div class="sheet-mask" id="sheetMask" data-page-node-id="PDGbmNCDmH4AhAutMgEhdp"></div>
+
+  <div class="sheet" id="sheetIntro" data-close-sheet data-page-node-id="bhOBk3zCg2VjmQJv0RAgM0">
+    <div class="sheet-bar" data-page-node-id="D4EehS5hDZL8htKrhEnj2q"><i data-page-node-id="LLFSBhQjCBaoIsjXHiXvEK"></i></div>
+    <h3 class="sheet-title" data-page-node-id="ATGzOBZbxtr21XNlT4cEFY">项目简介</h3>
+    <div class="sheet-body" id="sheetIntroBody" data-page-node-id="6Hf78juMBcTiyZd5NWPLst"></div>
+    <div class="sheet-links" data-page-node-id="zStfDCo1meBUj8tjLLWvuo"></div>
+    <button class="sheet-close" type="button" data-page-node-id="VIBeLH0T0AzdEP7ucFts4u">返回</button>
+  </div>
+
+  <div class="sheet" id="sheetConcept" data-close-sheet data-page-node-id="B2IBoOEiD9RkdPuGTxHehE">
+    <div class="sheet-bar" data-page-node-id="CDeYWFwQnV5OCUkYdlbwzl"><i data-page-node-id="MAdts9jfRJEavVXgX8oyai"></i></div>
+    <h3 class="sheet-title" data-page-node-id="9yEo489EbTBVgnzERbUTGW">创作说明</h3>
+    <div class="sheet-body" id="sheetConceptBody" data-page-node-id="ppzdWcLKjXjE9xjv9BD87f"></div>
+    <button class="sheet-close" type="button" data-page-node-id="w601XHeO1wnkXNDexaTCR9">返回</button>
+  </div>
+
+  <div class="sheet" id="sheetSocial" data-close-sheet data-page-node-id="0PWArk2mc67rj4oGCmui5A">
+    <div class="sheet-bar" data-page-node-id="SOHOIYrelV9eP9OaD5IjUA"><i data-page-node-id="nUhxVwHGrtcps4n7YI1rcw"></i></div>
+    <h3 class="sheet-title" data-page-node-id="rNwaYF06VPoUW85upb26wZ">传播矩阵</h3>
+    <div class="sheet-body" id="sheetSocialBody" data-page-node-id="OtbBWjFLdfhZQtXbeo3Xi2"></div>
+    <div class="sheet-links" data-page-node-id="EX2TcJw6C5ccfCCDSfOTA4"></div>
+    <button class="sheet-close" type="button" data-page-node-id="bwtMlar8YWTQ6TEZNVaVGu">返回</button>
+  </div>
+
+  <!-- ============ 地标知识问答互动小游戏 ============ -->
+  <div class="quiz" id="quizLayer" role="dialog" aria-modal="true" data-page-node-id="a8fDwK8SAMTv8NGOoZmUAu">
+    <div class="quiz-bg" id="quizBg" data-page-node-id="z4i6H52OZErUZCHYYGgXDK"></div>
+    <div class="quiz-inner" data-page-node-id="SEfSvGTCBENxGWNtnAMyYL">
+
+      <div class="quiz-top" data-page-node-id="OTTclZckZehYiMBVzNngvu">
+        <button class="quiz-back" id="quizBack" type="button" data-page-node-id="GWigPKVL6wpUci3WHAiPFM">‹ 返回</button>
+        <div class="quiz-progress" data-page-node-id="CXL58cwFthAvXTgx8hIrpv"><i id="quizBar" data-page-node-id="xJQQvyG2DMQcFrgmVMu3ba"></i></div>
+        <div class="quiz-score" data-page-node-id="LKo4SUOW1wCotozg967moj">
+          <span class="qs-star" data-page-node-id="fsU1e0pSFyIAoIdf4D7FZV">★</span><span id="quizScore" data-page-node-id="CypQhGBZrIptBqbi1aVTZR">0</span>
+        </div>
+      </div>
+
+      <!-- 开始页 -->
+      <div class="quiz-page is-on" data-page="start" data-page-node-id="DVaneHBaaQcPN98F0l9vDi">
+        <div class="qz-start-card" data-page-node-id="TCwJjxXCvcc8h6DXrx0Zwr">
+          <div class="qz-logo" data-page-node-id="rnwIDHvH7z5rtVu3mj6aQ1">?</div>
+          <h2 class="qz-title" id="qzTitle" data-page-node-id="5ytdPIPYx7QYR2FnizIjrA">地标知识大挑战</h2>
+          <p class="qz-desc" id="qzDesc" data-page-node-id="j7FBSVrlv4uEGeOS38Xes4">六大文化地标 · 边玩边学</p>
+          <ul class="qz-rules" data-page-node-id="20MQ7lR7LABm86vxbiDuQo">
+            <li data-page-node-id="dA79OWHRaM2nuSs7HP8FWR">本题库围绕六大地标的历史、建筑与民俗知识点</li>
+            <li data-page-node-id="HVMq5c8dr5VettjvHysQjs">每轮随机抽取题目，单选作答</li>
+            <li data-page-node-id="0hVqetCWOcSUqDS4ldJ3HS">答对得星，答错即时给出文化解析</li>
+          </ul>
+          <div class="qz-best" data-page-node-id="b3nSnBSxDL1pYX9X4cA4nl">历史最佳：<b id="qzBest" data-page-node-id="VZGYaXkFPJl8E7D5EcS2cr">0</b> 星</div>
+          <button class="qz-btn qz-primary" id="qzStart" type="button" data-page-node-id="oz5tvqOgl5SSx59TvTKlBF">开始闯关</button>
+        </div>
+      </div>
+
+      <!-- 答题页 -->
+      <div class="quiz-page" data-page="play" data-page-node-id="DaGAYOs06ib7oLOU62AYTR">
+        <div class="qz-play-card" data-page-node-id="9ZKTkjN8OtydgAApM5qjZv">
+          <div class="qz-meta" data-page-node-id="Nr8N9S0FjwfmiGGxTH8DGH"><span id="qzIndex" data-page-node-id="jbyEcdiYXXHCTlEF5XeGFa">第 1 / 8 题</span><span id="qzFrom" data-page-node-id="AGnWONlSLd15mjRRRcwGFQ">洪崖洞</span></div>
+          <h3 class="qz-question" id="qzQuestion" data-page-node-id="do0XUzTzE4y18TLjburvPV"></h3>
+          <div class="qz-options" id="qzOptions" data-page-node-id="rwLdtTPZTxTACwNHouNEc7"></div>
+          <div class="qz-explain" id="qzExplain" data-page-node-id="9Pz8Fhkj23b6qN7Yl74vis">
+            <span class="qx-badge" id="qxBadge" data-page-node-id="BalYqx5wseE1GpkYnKT0f3">答对了</span>
+            <p class="qx-text" id="qxText" data-page-node-id="VJvo6pXJVEqDktar73cSpf"></p>
+          </div>
+          <div class="qz-next-wrap" id="qzNextWrap" data-page-node-id="qpQzNextWrapNode">
+            <button class="qz-btn qz-primary" id="qzNext" type="button" data-page-node-id="bLP5dTqdaBcgMgIAGo7aqi">下一题</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 结果页 -->
+      <div class="quiz-page" data-page="result" data-page-node-id="P19utkjBQydsHu35uvaMCd">
+        <div class="qz-result-card" data-page-node-id="wUZ9MMmtOdOHXatuJVSLHx">
+          <div class="qz-medal" id="qzMedal" data-page-node-id="fJzTwiU2UPNKFIEbIYB9Rf">🏅</div>
+          <h2 class="qz-result-title" id="qzResultTitle" data-page-node-id="woXUaVo4rwjF2gkMaPhAXz">闯关完成</h2>
+          <div class="qz-stars" id="qzStars" data-page-node-id="TGTZKTAQCcvt3edYYCAnbO"></div>
+          <p class="qz-result-score" data-page-node-id="d45mPYL0PA5YB5pMjdYPKP">本轮获得 <b id="qzFinalScore" data-page-node-id="0RITyjXcCNUbR4EHgP9TXe">0</b> 星<span id="qzNewRecord" data-page-node-id="xZVCRAmZOywBOvVMbIG6j5"></span></p>
+          <p class="qz-result-comment" id="qzComment" data-page-node-id="DIinIXGsjp0XwrzzRLM1ws"></p>
+          <button class="qz-btn qz-primary" id="qzRestart" type="button" data-page-node-id="z6YGfDc9atoIOxGA2AGLKH">再玩一次</button>
+          <button class="qz-btn qz-ghost" id="qzBackHome" type="button" data-page-node-id="o3EJ3njkv2TWwcLl0vpnBD">返回地图</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="toast" id="topToast" data-page-node-id="EVtQnRtLd1aPT1vC9YrlYn"></div>
+
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/quiz.js"></script>
+<script src="js/app.js"></script>
+<script src="js/map.js"></script>
+</body>
+</html>
