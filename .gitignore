@@ -1,0 +1,28 @@
+# Python
+.venv/
+.venv-img/
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# IDE / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs & temp
+tools/*.log
+tools/reencode.log
+*.tmp
+*.bak
+
+# WorkBuddy session artifacts
+.workbuddy/
